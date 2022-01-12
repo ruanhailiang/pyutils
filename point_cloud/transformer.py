@@ -58,23 +58,5 @@ def to_pcd(las_file, out_pcd_file):
 if __name__ == '__main__':
     las_file = "/home/oscar/Music/20201201140942__Ground.las"
     out_pcd_file = '/home/oscar/Music/20201201140942__Ground.pcd'
-    print(print_las_info(las_file))
-    f = laspy.read(las_file)
-    point_count = f.header.point_count
-    header = get_pcd_header(point_count, point_count)
-    pcd = open(out_pcd_file, 'w')
-    pcd.write(header)
-    xyz_array = f.xyz
-    intensities = f.points.intensity
-    points = np.column_stack((xyz_array, intensities))
-    np.savetxt(pcd,points, fmt='%.2f %.2f %.2f %.2f')
-    # for i in range(point_count):
-    #     x,y,z = xyz_array[i]
-    #     intensity = points[i].intensity
-    #     pcd.write('%.2f %.2f %.2f %.2f\n' % (x, y, z, intensity))
-    pcd.close()
-
-        
-    # header = get_pcd_header(las_file)
-    # print(header)
-    pass
+    to_pcd(las_file, out_pcd_file)
+    print('done')
